@@ -90,12 +90,10 @@ app.patch("/api/resources/:id", (req, res) => {
   }
 
   if (data[index].status === "complete") {
-    return res
-      .status(422)
-      .json({
-        errorCode: 422,
-        message: "Completed resource can not be modified",
-      });
+    return res.status(422).json({
+      errorCode: 422,
+      message: "Completed resource can not be modified",
+    });
   }
   data[index] = {
     ...data[index],
@@ -132,4 +130,4 @@ app.patch("/api/resources/:id", (req, res) => {
   res.json(data[index]);
 });
 
-app.listen(3001, () => console.log("Server is running"));
+app.listen(process.env.PORT || 3001, () => console.log("Server is running"));
